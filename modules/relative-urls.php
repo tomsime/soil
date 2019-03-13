@@ -56,3 +56,23 @@ add_action('the_seo_framework_do_before_output', function () {
 add_action('the_seo_framework_do_after_output', function () {
   add_filter('wp_get_attachment_url', 'Roots\\Soil\\Utils\\root_relative_url');
 });
+
+/**
+ * Relative urls type added
+ */
+$fork_rel_filters = array(
+    'home_url',       // Home url
+    'site_url',       // Site url
+    'post_link',       // Normal post link
+    'post_type_link',  // Custom post type link
+    'page_link',       // Page link
+    'attachment_link', // Attachment link
+    'get_shortlink',   // Shortlink
+    'post_type_archive_link',    // Post type archive link
+    'get_comments_pagenum_link', // Paginated comment link
+    'search_link', // Search link
+);
+
+foreach ( $fork_rel_filters as $filter ) {
+    add_filter( $filter, 'wp_make_link_relative' );
+}
